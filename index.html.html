@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #000;
+            color: white;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            padding: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #ff69b4;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero {
+            background: linear-gradient(-45deg, #ff69b4, #4158D0, #C850C0);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .title {
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #fff, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 2s linear infinite;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .about {
+            background: #111;
+        }
+
+        .skills {
+            background: #0a0a0a;
+        }
+
+        .qualities {
+            background: #111;
+        }
+
+        .friendship {
+            background: #0a0a0a;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 1rem;
+            backdrop-filter: blur(10px);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 1s;
+        }
+
+        .card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff69b4, #C850C0);
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .quality-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .quality-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hearts {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: float-up 4s linear forwards;
+        }
+
+        @keyframes float-up {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .title { font-size: 3rem; }
+            .subtitle { font-size: 1.5rem; }
+            .nav ul { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#qualities">Qualities</a></li>
+            <li><a href="#friendship">Friendship</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero" class="hero">
+        <h1 class="title floating">Ibtissam (Betty)</h1>
+        <p class="subtitle">A Brilliant Mind, An Amazing Friend ✨</p>
+    </section>
+
+    <section id="about" class="about">
+        <div class="card">
+            <h2 class="subtitle">About Betty</h2>
+            <p style="font-size: 1.2rem; line-height: 2;">
+                Betty is not just any computer science student - she's a rising star in the tech world! 
+                With her exceptional problem-solving skills and creative mindset, she tackles every challenge 
+                with determination and grace. Her passion for technology and innovation shines through in 
+                everything she does, making her stand out in the field of computer science.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="card">
+            <h2 class="subtitle">Technical Prowess</h2>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: 95%" data-width="95">Problem Solving</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%" data-width="90">Programming</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: 98%" data-width="98">Creativity</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: 92%" data-width="92">Innovation</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="qualities" class="qualities">
+        <h2 class="subtitle">Amazing Qualities</h2>
+        <div class="quality-grid">
+            <div class="quality-item">
+                <div class="emoji">🌟</div>
+                <h3>Brilliant Mind</h3>
+                <p>Exceptional intelligence and quick learning ability</p>
+            </div>
+            <div class="quality-item">
+                <div class="emoji">💝</div>
+                <h3>Kind Heart</h3>
+                <p>Always there to help and support others</p>
+            </div>
+            <div class="quality-item">
+                <div class="emoji">💪</div>
+                <h3>Determination</h3>
+                <p>Never gives up until she achieves her goals</p>
+            </div>
+            <div class="quality-item">
+                <div class="emoji">🎯</div>
+                <h3>Focus</h3>
+                <p>Dedicated and committed to excellence</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="friendship" class="friendship">
+        <div class="card">
+            <h2 class="subtitle">The Best Friend Ever</h2>
+            <p style="font-size: 1.2rem; line-height: 2; text-align: center;">
+                Betty is the kind of friend everyone wishes they had. Her loyalty knows no bounds, 
+                and her support is unwavering. She celebrates your victories as if they were her own 
+                and stands by you during challenging times. Her infectious laughter and positive energy 
+                make every moment spent with her special. We're not just friends - we're family! ❤
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Random hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'hearts';
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        setInterval(createHeart, 1000);
+
+        // Initialize skill bars
+        function initializeSkillBars() {
+            document.querySelectorAll('.skill-progress').forEach(bar => {
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = bar.dataset.width + '%';
+                }, 500);
+            });
+        }
+
+        // Reinitialize skill bars when skills section is visible
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    initializeSkillBars();
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelector('#skills').forEach(section => {
+            skillsObserver.observe(section);
+        });
+    </script>
+</body>
+</html>
